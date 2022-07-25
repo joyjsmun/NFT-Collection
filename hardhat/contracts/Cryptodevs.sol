@@ -7,7 +7,7 @@
 
 
 
-contract CryptoDevs is ERC721Enumerable, Ownable {
+contract CryptoDevs is ERC721Enumerable, Ownable { 
     
 //@dev _baseTokenURI for computing{tokenURI}
 //If set, the resulting URI for each token will be the concatenation of the 'baseURI' and the 'tokenId'.
@@ -47,14 +47,15 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
     constructor(string memory baseURI, address whitelistContract) ERC721("CryptoDevs","CD"){
         _baseTokenURI = baseURI;
         whitelist = IWhitelist(whitelistContract);
-
+    }
         
-        //@dev startPreSale starts a presale for the whitelisted address
-        function startPreSale() public onlyOwner {  
-            presaleStarted = true;
-            presaleEnded = block.timestamp + 5 minutes;
-            
-        }
+        //@dev startPresale starts a presale for the whitelisted address
+        function startPresale() public onlyOwner {
+          presaleStarted = true;
+          // Set presaleEnded time as current timestamp + 5 minutes
+          // Solidity has cool syntax for timestamps (seconds, minutes, hours, days, years)
+          presaleEnded = block.timestamp + 5 minutes;
+      }
 
         //@dev presaleMint allow a user to mint one NFT per transaction during the presale
         // only when the contract is not paused, presaleMint function can excute
@@ -74,7 +75,7 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
         //@dev mint allows a user to mint 1 NFT per transaction after the presale has ended.
         // only when the contract is not paused, mint function can excute
         function  mint() public payable onlyWhenNotPaused {
-            require(presaleStarted && block.timestamp >= presaleEnded, "Presale has not ended")
+            require(presaleStarted && block.timestamp >= presaleEnded, "Presale has not ended");
             require(tokenIds < maxTokenIds,"Exceeded the limit");
             require(msg.value >= _price, "Ether sent is not correct");
             tokenIds +=1;
@@ -96,10 +97,10 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
 
        // @dev withdraw sends all the ether in the contract to the owner of the contract
         function withdraw() public onlyOwner {
-            address owner = owner();
+            address _owner = owner();
             //sending the amount of eth that contract has to the owner
             uint256 amount = address(this).balance;
-            (bool sent, ) = _owner.call{value: amount}("");
+            (bool sent, ) =  _owner.call{value: amount}("");
             require(sent, "Failed to send ether");
         }
 
@@ -111,4 +112,3 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
 
     }
 
-}
