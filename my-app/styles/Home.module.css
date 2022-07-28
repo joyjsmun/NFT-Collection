@@ -1,4 +1,6 @@
 .main {
+  width: 100vw;
+  padding-left: 20vw;
   min-height: 90vh;
   display: flex;
   flex-direction: row;
@@ -16,7 +18,7 @@
 }
 
 .image {
-  width: 70%;
+  width: 40%;
   height: 50%;
   margin-left: 20%;
 }
