@@ -4,8 +4,7 @@ export default function handler(req,res) {
     const tokenId = req.query.tokenId;
 
     //as all the images are uploaded on github, we can extract the images from github.
-    const image_url =
-"https://raw.githubusercontent.com/LearnWeb3DAO/NFT-Collection/main/my-app/public/cryptodevs/";
+    const image_url ="https://raw.githubusercontent.com/LearnWeb3DAO/NFT-Collection/main/my-app/public/cryptodevs/";
 
 res.status(200).json({
     name:"Cryto Joy Dev #" + tokenId,
