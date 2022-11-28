@@ -276,7 +276,7 @@ if(presaleStarted && presaleEnded){
        <div>
          <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
          <div className={styles.description}>
-           It's an NFT collection for devleopers in Crypto.
+           Its an NFT collection for devleopers in Crypto.
          </div>
          <div className={styles.description}>
            {tokenIdsMinted}/20 have been minted
