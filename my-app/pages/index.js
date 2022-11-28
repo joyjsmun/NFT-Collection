@@ -28,7 +28,7 @@ export default function Home(){
       const tx = await nftContract.presaleMint({
         //value signifies the cost of one crypto dev which is "0.001" eth.
         //we are parsing '0.01' string to ether using the utils library from ethers.js
-        value: utils.parseEther("0.001"),
+        value: utils.parseEther("0.01"),
       });
       setLoading(true);
       await tx.wait();
