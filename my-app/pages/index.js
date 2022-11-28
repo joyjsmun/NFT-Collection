@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import Web3Modal from "web3modal";
@@ -47,21 +46,17 @@ export default function Home(){
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS,abi,signer);
       const tx = await nftContract.mint({
         value: utils.parseEther("0.01"),
-      })
+      });
+      setLoading(true);
+      await tx.wait();
+      setLoading(false);
+      window.alert("You successfully minted a Crypto Dev!")
       
     } catch (err) {
       console.error(err)
     }
   }
 
-  const publicMint = async () => {
-    try {
-      
-    } catch (err) {
-      
-    }
-  }
-  
   const startPresale = async () => {
     try {
       const signer = await getProviderOrSigner(true);
@@ -279,11 +274,11 @@ if(presaleStarted && presaleEnded){
       </Head>
       <div className={styles.main}>
        <div>
-         <h1>Welcome to Crypto Devs!</h1>
-         <div>
+         <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
+         <div className={styles.description}>
            It's an NFT collection for devleopers in Crypto.
          </div>
-         <div>
+         <div className={styles.description}>
            {tokenIdsMinted}/20 have been minted
          </div>
          {renderButton()}

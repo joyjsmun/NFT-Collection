@@ -31,7 +31,7 @@
 .description {
   margin: 2rem 0;
   line-height: 1;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .button {
@@ -39,11 +39,12 @@
   background-color: blue;
   border: none;
   color: #fff;
-  font-size: 15px;
+  font-size: 1rem;
   padding: 20px;
   width: 200px;
   cursor: pointer;
   margin-bottom: 2%;
+  margin-top: 10%;
 }
 
 @media (max-width: 1000px) {
